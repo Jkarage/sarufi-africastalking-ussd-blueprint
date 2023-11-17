@@ -2,6 +2,7 @@ import os
 from fastapi import FastAPI, Request, Response
 from sarufi import Sarufi
 from dotenv import load_dotenv
+from mangum import Mangum
 
 # Load environment variables
 load_dotenv()
@@ -10,6 +11,7 @@ SARUFI_BOT_ID = os.getenv('SARUFI_BOT_ID')
 
 # Initialize your FastAPI application and Sarufi instance
 app = FastAPI()
+handler = Mangum(app)
 sarufi = Sarufi(SARUFI_API_KEY)
 
 
