@@ -11,9 +11,9 @@ SARUFI_BOT_ID = os.getenv('SARUFI_BOT_ID')
 
 # Initialize your FastAPI application and Sarufi instance
 app = FastAPI()
-handler = Mangum(app)
 sarufi = Sarufi(SARUFI_API_KEY)
 
+handler = Mangum(app)
 
 def parse_message(response: dict) -> str:
     """ Parse the message from the Sarufi response. """
