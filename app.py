@@ -34,14 +34,14 @@ def respond(session_id: str, phone_number: str, message: str) -> str:
     chat_id = f"{session_id}-{phone_number}"
     message = message.split("*")[-1]
     response = sarufi.chat(
-        bot_id=SARUFI_BOT_ID, chat_id=chat_id, message=message, message_type="text")
+        bot_id=SARUFI_BOT_ID, chat_id=chat_id, message=message, channel="general", message_type="text")
 
     parsed_message = parse_message(response)
     next_state = response.get("next_state", "")
     return format_ussd_response(parsed_message, next_state)
 
 
-@app.post("/ussd")
+@app.post("/")
 async def ussd(request: Request) -> Response:
     """ Handle USSD requests. """
     form_data = await request.form()
